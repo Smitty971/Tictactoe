@@ -9,15 +9,20 @@ const drawMessage = () => 'Game ended in a draw!';
 const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
 
 statusDisplay.innerHTML = currentPlayerTurn();
-function handleCellPlayed() {
 
+function handleCellPlayed(clickedCell, clickedCellIndex) {
+    gameState[clickedCellIndex] = currentPlayer;
+    clickedCell.innerHTML = currentPlayer;
 }
+
 function handlePlayerChange() {
 
 }
+
 function handleResultValidation() {
 
 }
+
 function handleCellClick(clickedCellEvent) {
 
     const clickedCell = clickedCellEvent.target;
