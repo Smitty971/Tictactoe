@@ -16,7 +16,8 @@ function handleCellPlayed(clickedCell, clickedCellIndex) {
 }
 
 function handlePlayerChange() {
-
+    currentPlayer = currentPlayer === "x" ? "0" : "x";
+    statusDisplay.innerHTML = currentPlayerTurn();
 }
 
 const winningConditions = [
@@ -50,9 +51,9 @@ function handleResultValidation() {
         gameActive = false;
         return;
     }
-    let roundDraw = !gameState.includes("")
+    let roundDraw = !gameState.includes("");
     if (roundDraw) {
-        statusDisplay.innerHTML drawMessage();
+        statusDisplay.innerHTML = drawMessage();
         gameActive = false;
         return;    
     }
@@ -74,7 +75,12 @@ function handleCellClick(clickedCellEvent) {
     handleResultValidation();
 }
 function handleRestartGame() {
-
+    gameActive = true;
+    currentPlayer = "x";
+    gameState = ["", "", "", "", "", "", "", "", ""];
+    statusDisplay.innerHTML = currentPlayerTurn();
+    document.querySelectorAll('.cell')
+        .forEach(cell => cell.innerHTML = "");
 }
 
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
