@@ -33,9 +33,33 @@ const winningConditions = [
 function handleResultValidation() {
     let roundWon = false;
     for (let i = 0; i <= 7; i++) {
-        
+        const winCondition = winningConditions[i];
+        let a = gameState[winCondition[0]];
+        let b = gameState[winCondition[1]];
+        let c = gameState[winCondition[3]];
+        if (a === '' || b === '' || c === ''){
+            continue;
+        }
+        if (a === b && b === c ) {
+            roundWon = true;
+            break
+        }
     }
-} //stopped off here last
+    if (roundWon) {
+        statusDisplay.innerHTML = winningMessage();
+        gameActive = false;
+        return;
+    }
+    let roundDraw = !gameState.includes("")
+    if (roundDraw) {
+        statusDisplay.innerHTML drawMessage();
+        gameActive = false;
+        return;    
+    }
+
+    handlePlayerChange();
+} 
+
 
 function handleCellClick(clickedCellEvent) {
 
